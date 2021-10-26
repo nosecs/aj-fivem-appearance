@@ -6,36 +6,46 @@ local CurrentActionMsg = ''
 local hasAlreadyEnteredMarker = false
 local allMyOutfits = {}
 local isPurchaseSuccessful = false
+local PlayerData = {}
 
 -- Net Events
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     QBCore.Functions.TriggerCallback('fivem-appearance:getPlayerSkin', function(appearance)
 	exports['fivem-appearance']:setPlayerAppearance(appearance)
+	PlayerData = QBCore.Functions.GetPlayerData()
     end)
 end)
 
 RegisterNetEvent('fivem-appearance:CreateFirstCharacter', function()
-	exports['fivem-appearance']:setPlayerModel('mp_m_freemode_01')
-	local config = {
-		ped = true,
-		headBlend = true,
-		faceFeatures = true,
-		headOverlays = true,
-		components = true,
-		props = true,
-	}
+	QBCore.Functions.GetPlayerData(function(PlayerData)
+		local skin = 'mp_m_freemode_01'
 
-	exports['fivem-appearance']:setPlayerAppearance(appearance)
+		if PlayerData.charinfo.gender == 1 then 
+            skin = "mp_f_freemode_01" 
+        end
 
-	exports['fivem-appearance']:startPlayerCustomization(function(appearance)
-		if (appearance) then
-			TriggerServerEvent('fivem-appearance:save', appearance)
-			print('Player Clothing Saved')
-		else
-			print('Canceled')
-		end
-	end, config)
+		exports['fivem-appearance']:setPlayerModel(skin)
+		local config = {
+			ped = true,
+			headBlend = true,
+			faceFeatures = true,
+			headOverlays = true,
+			components = true,
+			props = true,
+		}
+
+		exports['fivem-appearance']:setPlayerAppearance(appearance)
+
+		exports['fivem-appearance']:startPlayerCustomization(function(appearance)
+			if (appearance) then
+				TriggerServerEvent('fivem-appearance:save', appearance)
+				print('Player Clothing Saved')
+			else
+				print('Canceled')
+			end
+		end, config)
+	end)
 end, false)
 
 AddEventHandler('fivem-appearance:hasExitedMarker', function(zone)
