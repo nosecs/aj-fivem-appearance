@@ -16,6 +16,7 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
 end)
 
 RegisterNetEvent('fivem-appearance:CreateFirstCharacter', function()
+	exports['fivem-appearance']:setPlayerModel('mp_m_freemode_01')
 	local config = {
 		ped = true,
 		headBlend = true,
