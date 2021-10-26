@@ -2,8 +2,9 @@ Config = {}
 
 Config.DrawDistance = 10.0
 Config.MarkerSize   = {x = 7.0, y = 7.0, z = 1.0}
-Config.MarkerColor  = {r = 102, g = 102, b = 204}
-Config.MarkerType   = 25
+
+Config.Money = 0 -- How much it takes from you when you open the clothing menu
+Config.VersionCheck = true
 
 Config.ClothingShops = {
 	[1] = {
@@ -77,41 +78,40 @@ Config.ClothingShops = {
 		MarkerSize   = {x = 7.0, y = 7.0, z = 1.0}
 	},
 	[15] = {
-		blip = false,
+		blip = true,
 		coords = vector3(300.60162353516, -597.76068115234, 42.18409576416),
 		MarkerSize   = {x = 3.0, y = 5.0, z = 0.0}
 	},
 	[16] = {
-		blip = false,
-		coords = vector3(461.47720336914, -998.05444335938, 30.201751708984),
-		MarkerSize   = {x = 3.5, y = 5.0, z = 0.0}
-	},
-	[17] = {
-		blip = false,
+		blip = true,
 		coords = vector3(-1622.6466064453, -1034.0192871094, 13.145475387573),
 		MarkerSize   = {x = 2.5, y = 2.0, z = 0.0}
 	},
-	[18] = {
-		blip = false,
+	[17] = {
+		blip = true,
 		coords = vector3(1861.1047363281, 3689.2331542969, 34.276859283447),
 		MarkerSize   = {x = 2.0, y = 2.0, z = 0.0}
 	},
-	[19] = {
-		blip = false,
+	[18] = {
+		blip = true,
 		coords = vector3(1834.5977783203, 3690.5405273438, 34.270645141602),
 		MarkerSize   = {x = 2.0, y = 2.0, z = 0.0}
 	},
-	[20] = {
-		blip = false,
+	[19] = {
+		blip = true,
 		coords = vector3(1742.1407470703, 2481.5856933594, 45.740657806396),
 		MarkerSize   = {x = 4.0, y = 2.0, z = 0.0}
 	},
-	[21] = {
-		blip = false,
+	[20] = {
+		blip = true,
 		coords = vector3(516.8916015625, 4823.5693359375, -66.18879699707),
 		MarkerSize   = {x = 2.0, y = 2.0, z = 0.0}
 	},
-
+	[21] = {
+		blip = true,
+		coords = vector3(105.7079, -1302.983, 28.793018),
+		MarkerSize   = {x = 2.0, y = 2.0, z = 0.0}
+	},	
 }
 
 Config.BarberShops = {

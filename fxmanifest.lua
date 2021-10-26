@@ -1,28 +1,29 @@
 fx_version "cerulean"
 game { "gta5" }
 
-server_scripts {
-  '@mysql-async/lib/MySQL.lua',
-  'server.lua',
-}
+author 'ihyajb#9723'
+description 'A flexible player customization script for FiveM. Made to work with QBCore'
+repository 'https://github.com/pedr0fontoura/fivem-appearance'
+version 'v1.0.0'
+
+shared_script 'config.lua'
 
 client_scripts {
-  '@es_extended/locale.lua',
-  'typescript/build/client.js',
-  'client.lua',
-  'config.lua',
+  'game/build/client.js',
+  'client/client.lua',
 }
 
+server_scripts {
+  'server/server.lua',
+  'server/version.lua',
+}
+
+
 files {
-  'ui/build/index.html',
-  'ui/build/static/js/*.js',
+  'web/build/index.html',
+  'web/build/static/js/*.js',
   'locales/*.json',
   'peds.json'
 }
 
-provides {
-  'skinchanger',
-  'esx_skin'
-}
-
-ui_page 'ui/build/index.html'
+ui_page 'web/build/index.html'
