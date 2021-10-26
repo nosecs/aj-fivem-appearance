@@ -84,8 +84,6 @@ RegisterNUICallback('cDataPed', function(data)
                 Citizen.Wait(0)
             end
             charPed = CreatePed(2, model, Config.PedCoords.x, Config.PedCoords.y, Config.PedCoords.z - 0.98, Config.PedCoords.w, false, true)
-            loadAnimDict("anim@amb@board_room@whiteboard@")
-            TaskPlayAnim(charPed, "anim@amb@board_room@whiteboard@", "tired_01_amy_skater_01", 4.0, 1.0,-1, 1, 0, false, false, false)
             SetPedComponentVariation(charPed, 0, 0, 0, 2)
             FreezeEntityPosition(charPed, false)
             SetEntityInvincible(charPed, true)
@@ -97,7 +95,7 @@ end)
 ```
 ## Known Bugs
 
-- qb-multicharacter will either show a blank character or no character at all.
+- Creating a character using the export sometimes will scuff it and make you create a new character on every login
 
 
 ## Preview
@@ -118,37 +116,3 @@ config.cfg example:
 setr fivem-appearance:locale "en"
 ensure fivem-appearance
 ```
-
-## Client Exports
-
-### Appearance
-
-| Export              | Parameters                                     | Return            |
-| ------------------- | ---------------------------------------------- | ----------------- |
-| getPedModel         | ped: _number_                                  | _string_          |
-| getPedComponents    | ped: _number_                                  | _PedComponent[]_  |
-| getPedProps         | ped: _number_                                  | _PedProp[]_       |
-| getPedHeadBlend     | ped: _number_                                  | _PedHeadBlend_    |
-| getPedFaceFeatures  | ped: _number_                                  | _PedFaceFeatures_ |
-| getPedHeadOverlays  | ped: _number_                                  | _PedHeadOverlays_ |
-| getPedHair          | ped: _number_                                  | _PedHair_         |
-| getPedAppearance    | ped: _number_                                  | _PedAppearance_   |
-| setPlayerModel      | model: _string_                                | _Promise\<void\>_ |
-| setPedComponent     | ped: _number_, component: _PedComponent_       | _void_            |
-| setPedComponents    | ped: _number_, components: _PedComponent[]_    | _void_            |
-| setPedProp          | ped: _number_, prop: _PedProp_                 | _void_            |
-| setPedProps         | ped: _number_, props: _PedProp[]_              | _void_            |
-| setPedFaceFeatures  | ped: _number_, faceFeatures: _PedFaceFeatures_ | _void_            |
-| setPedHeadOverlays  | ped: _number_, headOverlays: _PedHeadOverlays_ | _void_            |
-| setPedHair          | ped: _number_, hair: _PedHair_                 | _void_            |
-| setPedEyeColor      | ped: _number_, eyeColor: _number_              | _void_            |
-| setPlayerAppearance | appearance: _PedAppearance_                    | _void_            |
-| setPedAppearance    | ped: _number_, appearance: _PedAppearance_     | _void_            |
-
-### Customization
-
-This export is only available if **fivem-appearance:customization** is set to 1.
-
-| Export                   | Parameters                                                                                    | Return |
-| ------------------------ | --------------------------------------------------------------------------------------------- | ------ |
-| startPlayerCustomization | callback: _((appearance: PedAppearance \| undefined) => void)_, config? _CustomizationConfig_ | _void_ |
