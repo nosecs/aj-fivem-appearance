@@ -12,19 +12,26 @@ local PlayerData = {}
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     QBCore.Functions.TriggerCallback('fivem-appearance:getPlayerSkin', function(appearance)
-	exports['fivem-appearance']:setPlayerAppearance(appearance)
-	PlayerData = QBCore.Functions.GetPlayerData()
-    end)
+		exports['fivem-appearance']:setPlayerAppearance(appearance)
+		PlayerData = QBCore.Functions.GetPlayerData()
+		
+		if Config.Debug then  -- This will detect if the player model is set as "player_zero" aka michael. Will then set the character as a freemode ped based on gender.
+			Wait(5000)
+			if GetEntityModel(PlayerPedId()) == `player_zero` then
+				print('Player detected as "player_zero", Starting CreateFirstCharacter event')
+				TriggerEvent('qb-clothes:client:CreateFirstCharacter')
+			end
+		end
+		
+	end)
 end)
 
-RegisterNetEvent('fivem-appearance:CreateFirstCharacter', function()  -- Will change the name of this to qb-clothes:client:CreateFirstCharacter soon, I had some issues getting it to work.
+RegisterNetEvent('qb-clothes:client:CreateFirstCharacter', function()  -- Event renamed so you dont need to change anything for this to work... hopefully....
 	QBCore.Functions.GetPlayerData(function(PlayerData)
 		local skin = 'mp_m_freemode_01'
-
-		if PlayerData.charinfo.gender == 1 then 
+		if PlayerData.charinfo.gender == 1 then
             skin = "mp_f_freemode_01" 
         end
-
 		exports['fivem-appearance']:setPlayerModel(skin)
 		local config = {
 			ped = true,
@@ -34,9 +41,7 @@ RegisterNetEvent('fivem-appearance:CreateFirstCharacter', function()  -- Will ch
 			components = true,
 			props = true,
 		}
-
 		exports['fivem-appearance']:setPlayerAppearance(appearance)
-
 		exports['fivem-appearance']:startPlayerCustomization(function(appearance)
 			if (appearance) then
 				TriggerServerEvent('fivem-appearance:save', appearance)
@@ -55,7 +60,7 @@ end)
 RegisterNetEvent('fivem-appearance:clothingShop', function()
 	exports['qb-menu']:openMenu({
         {
-            header = "Clothing Store Options",
+            header = "👚 | Clothing Store Options",
             isMenuHeader = true, -- Set to true to make a nonclickable title
         },
         {
@@ -299,7 +304,7 @@ end)
 RegisterNetEvent('qb-clothing:client:openOutfitMenu', function()  -- Name is so that you dont have to replace the event, Used in Appartments, Bossmenu, etc...
 	exports['qb-menu']:openMenu({
         {
-            header = "Outfit Options",
+            header = "👔 | Outfit Options",
             isMenuHeader = true, -- Set to true to make a nonclickable title
         },
 		{

@@ -4,7 +4,7 @@ game { "gta5" }
 author 'ihyajb#9723'
 description 'A flexible player customization script for FiveM. Made to work with QBCore'
 repository 'https://github.com/ihyajb/aj-fivem-appearance'
-version 'v1.1.0'
+version 'v1.2.0'
 
 shared_script 'config.lua'
 
