@@ -98,12 +98,6 @@ RegisterNUICallback('cDataPed', function(data)
     end
 end)
 ```
-## Replace `TriggerEvent('qb-clothes:client:CreateFirstCharacter')` with:
-#### Line: 64 qb-multicharacter/client/main.lua
-#### Line: 55 qb-interior/client/main.lua
-```lua
-TriggerEvent('fivem-appearance:CreateFirstCharacter')
-```
 
 ## Preview
 
