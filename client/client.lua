@@ -173,10 +173,10 @@ RegisterNetEvent('fivem-appearance:saveOutfit', function()
         submitText = "Create Outfit",
         inputs = {
             {
-                text = "Outfit Name", -- text you want to be displayed as a place holder
-                name = "input", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Outfit Name",
+                name = "input",
+                type = "text",
+                isRequired = true
             },
         },
     })
@@ -224,14 +224,8 @@ RegisterNetEvent('fivem-appearance:deleteOutfit', function(id)
 	QBCore.Functions.Notify('Outfit Deleted', 'error')
 end)
 
-RegisterNetEvent("fivem-appearance:purchaseSuccessful")
-AddEventHandler("fivem-appearance:purchaseSuccessful", function()
-    isPurchaseSuccessful = true
-end)
-
-RegisterNetEvent("fivem-appearance:purchaseFailed")
-AddEventHandler("fivem-appearance:purchaseFailed", function()
-    isPurchaseSuccessful = false
+RegisterNetEvent("fivem-appearance:purchase", function(bool)
+    isPurchaseSuccessful = bool
 end)
 
 RegisterNetEvent('fivem-appearance:clothingMenu', function()
@@ -251,8 +245,12 @@ RegisterNetEvent('fivem-appearance:clothingMenu', function()
 			if appearance then
 				TriggerServerEvent('fivem-appearance:save', appearance)
 				print('Player Clothing Saved')
+				Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+				TriggerServerEvent('Select:Tattoos')
 			else
 				print('Canceled')
+				Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+				TriggerServerEvent('Select:Tattoos')
 			end
 		end, config)
 	end
@@ -272,8 +270,12 @@ RegisterNetEvent('fivem-appearance:barberMenu', function()
 		if appearance then
 			TriggerServerEvent('fivem-appearance:save', appearance)
 			print('Player Clothing Saved')
+			Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 		else
 			print('Canceled')
+			Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 		end
 	end, config)
 end)
@@ -295,8 +297,12 @@ RegisterNetEvent('qb-clothing:client:openMenu', function()  -- Admin Menu clothi
 		if appearance then
 			TriggerServerEvent('fivem-appearance:save', appearance)
 			print('Player Clothing Saved')
+			Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 		else
 			print('Canceled')
+			Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 		end
 	end, config)
 end)
@@ -481,20 +487,20 @@ CreateThread(function()
 		if (isInClothingShop and not hasAlreadyEnteredMarker) or (isInClothingShop and LastZone ~= currentZone) then
 			hasAlreadyEnteredMarker, LastZone = true, currentZone
 			CurrentAction     = 'clothingMenu'
-			TriggerEvent('cd_drawtextui:ShowUI', 'show', '[E] Clothing Menu')	
+			exports['qb-drawtext']:DrawText('[E] Clothing Menu','left')
 		end
 
 		if (isInBarberShop and not hasAlreadyEnteredMarker) or (isInBarberShop and LastZone ~= currentZone) then
 			hasAlreadyEnteredMarker, LastZone = true, currentZone
 			CurrentAction     = 'barberMenu'
-			TriggerEvent('cd_drawtextui:ShowUI', 'show', '[E] Barber Menu')	
+			exports['qb-drawtext']:DrawText('[E] Barber Menu','left')
 		end
 
 		if not isInClothingShop and not isInBarberShop and hasAlreadyEnteredMarker then
 			hasAlreadyEnteredMarker = false
 			sleep = 1000
 			TriggerEvent('fivem-appearance:hasExitedMarker', LastZone)
-			TriggerEvent('cd_drawtextui:HideUI')
+			exports['qb-drawtext']:HideText()
 		end
 		Wait(sleep)
 	end
@@ -530,8 +536,12 @@ RegisterCommand('clothingmenu', function()
 		if (appearance) then
 			TriggerServerEvent('fivem-appearance:save', appearance)
 			print('Player Clothing Saved')
+			Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 		else
 			print('Canceled')
+			Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 		end
 	end, config)
 end, false)

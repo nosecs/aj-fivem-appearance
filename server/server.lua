@@ -51,18 +51,17 @@ RegisterNetEvent('fivem-appearance:deleteOutfit', function(id)
 	exports.oxmysql:execute('DELETE FROM player_outfits WHERE id = ?', {id})
 end)
 
-RegisterServerEvent('fivem-appearances:buyclothing')
-AddEventHandler('fivem-appearances:buyclothing', function()
+RegisterNetEvent('fivem-appearances:buyclothing', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-	if Config.Money < 0 then
+	if Config.Money > 0 then
 		if Player.Functions.RemoveMoney('cash', Config.Money, "clothing-buy") then
-			TriggerClientEvent('fivem-appearance:purchaseSuccessful', src)
+			TriggerClientEvent('fivem-appearance:purchase', src, true)
 		else
 			TriggerClientEvent('QBCore:Notify', src, 'You dont have enough money!', 'error')
-			TriggerClientEvent('fivem-appearance:purchaseFailed', src)
+			TriggerClientEvent('fivem-appearance:purchase', src, false)
 		end
 	else
-		TriggerClientEvent('fivem-appearance:purchaseSuccessful', src)
+		TriggerClientEvent('fivem-appearance:purchase', src, true)
 	end
 end)
