@@ -4,7 +4,7 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 QBCore.Functions.CreateCallback('fivem-appearance:getPlayerSkin', function(source, cb)
 	local Player = QBCore.Functions.GetPlayer(source)
-	local players = MySQL.Sync.execute('SELECT skin FROM players WHERE citizenid = ?', {Player.PlayerData.citizenid})
+	local players = MySQL.Sync.fetchAll('SELECT skin FROM players WHERE citizenid = ?', {Player.PlayerData.citizenid})
 	local player, appearance = players[1]
 	if player.skin then
 		appearance = json.decode(player.skin)
@@ -27,7 +27,7 @@ end)
 RegisterNetEvent('fivem-appearance:getOutfit', function(name)
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
-	local outfit = MySQL.Sync.execute('SELECT outfit FROM player_outfits WHERE citizenid = @citizenid AND name = @name', {['@citizenid'] = Player.PlayerData.citizenid, ['@name'] = name})
+	local outfit = MySQL.Sync.fetchAll('SELECT outfit FROM player_outfits WHERE citizenid = @citizenid AND name = @name', {['@citizenid'] = Player.PlayerData.citizenid, ['@name'] = name})
 	local newOutfit = outfit
 	if newOutfit then
 		newOutfit = json.decode(newOutfit)
@@ -39,7 +39,7 @@ RegisterNetEvent('fivem-appearance:getOutfits', function()
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
 	local myOutfits = {}
-	local result = MySQL.Sync.execute('SELECT id, name, ped, components, props FROM player_outfits WHERE citizenid = ?', {Player.PlayerData.citizenid})
+	local result = MySQL.Sync.fetchAll('SELECT id, name, ped, components, props FROM player_outfits WHERE citizenid = ?', {Player.PlayerData.citizenid})
 	for i=1, #result, 1 do
 		table.insert(myOutfits, {id = result[i].id, name = result[i].name, ped = json.decode(result[i].ped), components = json.decode(result[i].components), props = json.decode(result[i].props)})
 	end
