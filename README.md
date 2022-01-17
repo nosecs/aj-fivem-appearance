@@ -25,7 +25,7 @@ ESX Version: https://github.com/ZiggyJoJo/brp-fivem-appearance
 #### Line: 151 qb-multicharacter/server/main.lua
 ```lua
 QBCore.Functions.CreateCallback("qb-multicharacter:server:getSkin", function(source, cb, cid)
-    local result = exports.oxmysql:executeSync('SELECT * FROM players WHERE citizenid = ?', {cid})
+    local result = MySQL.query.await('SELECT * FROM players WHERE citizenid = ?', {cid})
     local PlayerData = result[1]
     PlayerData.model = json.decode(PlayerData.skin)
     if PlayerData.skin ~= nil then
