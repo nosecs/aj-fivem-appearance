@@ -509,6 +509,9 @@ end)
 -- Command(s)
 
 RegisterCommand('reloadskin', function()
+	local playerPed = PlayerPedId()
+	local maxhealth = GetEntityMaxHealth(playerPed)
+	local health = GetEntityHealth(playerPed)
 	QBCore.Functions.TriggerCallback('fivem-appearance:getPlayerSkin', function(appearance)
 		exports['fivem-appearance']:setPlayerAppearance(appearance)
 	end)
@@ -518,6 +521,9 @@ RegisterCommand('reloadskin', function()
             DeleteObject(v)
             DeleteEntity(v)
         end
+	SetPedMaxHealth(PlayerId(), maxhealth)
+	Citizen.Wait(1000) -- Safety Delay
+	SetEntityHealth(PlayerPedId(), health)
     end
 end)
 
