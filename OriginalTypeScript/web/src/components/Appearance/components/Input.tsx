@@ -51,10 +51,10 @@ const Container = styled.div`
       border: none;
       border-radius: 2px;
 
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(23, 23, 23, 0.5);
 
       &:hover {
-        background: rgba(0, 0, 0);
+        background: rgba(220, 20, 60);
       }
     }
 
@@ -73,7 +73,7 @@ const Container = styled.div`
       border-radius: 2px;
       margin: 0 2px;
 
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(23, 23, 23, 0.8);
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {

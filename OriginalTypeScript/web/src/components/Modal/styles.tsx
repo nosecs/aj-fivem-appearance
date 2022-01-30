@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   text-transform: uppercase;
   text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
 
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(23, 23, 23, 0.9);
 
   span {
     font-size: 1rem;
@@ -61,6 +61,7 @@ export const Buttons = styled.div`
       transform: scale(1.1);
       opacity: 1;
       text-shadow: 0px 2px 2px rgba(251, 255, 190, 0.2);
+      background: rgba(220, 20, 60, 0.9);
     }
   }
 `;

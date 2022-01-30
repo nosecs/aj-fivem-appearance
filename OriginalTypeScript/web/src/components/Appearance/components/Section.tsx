@@ -40,19 +40,20 @@ const Header = styled.div<HeaderProps>`
 
   z-index: 2;
 
-  background: rgba(0, 0, 0, ${({ active }) => (active ? '0.9' : '0.7')});
+  background: rgba(23, 23, 23, ${({ active }) => (active ? '0.9' : '0.7')});
 
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.2);
 
   transition: background 0.1s;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(220, 20, 60, 0.9);
     cursor: pointer;
   }
 
   span {
     font-size: 15px;
+    font-weight: bold;
   }
 `;
 
