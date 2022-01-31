@@ -103,7 +103,7 @@ end)
 ```
 
 ## Preview
-### ![Video-Preview](https://streamable.com/1oug2s "Customization Preview-video")
+### Video-Preveiw: https://streamable.com/1oug2s
 
 ![Customization Preview](https://i.imgur.com/X0U7bk6.jpg "Customization Preview")
 ![Customization Preview](https://i.imgur.com/ejjmhKu.jpg "Customization Preview")
