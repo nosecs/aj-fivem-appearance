@@ -103,13 +103,7 @@ end)
 ```
 
 ## Preview
+### ![Video-Preview](https://streamable.com/1oug2s "Customization Preview-video")
 
-![Customization Preview](https://i.file.glass/XjXTIcvSpw.jpg "Customization Preview")
-![Customization Preview](https://i.file.glass/ZcyR746rWk.jpg "Customization Preview")
-![Customization Preview](https://i.file.glass/cE1Jk0d9Nk.jpg "Customization Preview")
-
-## Known Bugs
-
-- Creating a character using the export sometimes will scuff it and make you create a new character on every login
-- The CreateFirstCharacter event dosent always want to work first try
-- If you find anymore issues please report them on the Github issues page!
+![Customization Preview](https://i.imgur.com/X0U7bk6.jpg "Customization Preview")
+![Customization Preview](https://i.imgur.com/ejjmhKu.jpg "Customization Preview")
