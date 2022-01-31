@@ -54,7 +54,10 @@ const Container = styled.div`
       background: rgba(23, 23, 23, 0.5);
 
       &:hover {
-        background: rgba(220, 20, 60);
+        color: rgba(255, 255, 255, 1);
+        background: rgba(220, 20, 60, 0.9);
+        transition: background 0.2s;
+        transform: scale(1.1);
       }
     }
 

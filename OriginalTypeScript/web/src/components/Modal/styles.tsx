@@ -41,6 +41,7 @@ export const Buttons = styled.div`
     height: 40px;
     width: 100px;
     margin: 0 50px;
+    border-radius: 3vh;
 
     display: flex;
     justify-content: center;
@@ -52,7 +53,7 @@ export const Buttons = styled.div`
     text-transform: uppercase;
 
     opacity: 0.8;
-    transition: all 0.1s;
+    transition: all 0.2s;
 
     background: none;
     border: 0;

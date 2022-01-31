@@ -36,7 +36,7 @@ export const Container = styled.div`
 
   ::-webkit-scrollbar-thumb {
     background: rgba(220, 20, 60, 0.2);
-    border-radius: 4px;
+    border-radius: 3vh;
   }
 
   ::-webkit-scrollbar-thumb:hover {

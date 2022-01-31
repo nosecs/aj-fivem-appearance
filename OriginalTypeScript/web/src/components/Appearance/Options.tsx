@@ -58,7 +58,7 @@ const ToggleButton = styled.button<ToggleButtonProps>`
   justify-content: center;
 
   border: 0;
-  border-radius: 4px;
+  border-radius: 3vh;
 
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.2);
 
@@ -70,6 +70,8 @@ const ToggleButton = styled.button<ToggleButtonProps>`
   &:hover {
     color: rgba(255, 255, 255, 1);
     background: rgba(220, 20, 60, 0.9);
+    transition: background 0.2s;
+    transform: scale(1.05);
   }
 
   &:active {
@@ -79,12 +81,13 @@ const ToggleButton = styled.button<ToggleButtonProps>`
   ${({ active }) =>
     active &&
     css`
-      color: rgba(23, 23, 23, 0.7);
+      color: rgba(255, 255, 255, 0.7);
       background: rgba(220, 20, 60);
 
       &:hover {
-        color: rgba(23, 23, 23, 0.9);
+        color: rgba(255, 255, 255, 0.9);
         background: rgba(220, 20, 60, 1);
+        transition: background 0.2s;
       }
     `}
 `;
@@ -102,7 +105,7 @@ const Option = styled.button`
   flex-shrink: 0;
 
   border: 0;
-  border-radius: 4px;
+  border-radius: 3vh;
 
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.2);
 
@@ -114,6 +117,8 @@ const Option = styled.button`
   &:hover {
     color: rgba(255, 255, 255, 1);
     background: rgba(220, 20, 60, 0.9);
+    transition: background 0.2s;
+    transform: scale(1.05);
   }
 
   &:active {
@@ -148,7 +153,7 @@ const ExtendedIcon = styled.div`
   flex-shrink: 0;
 
   border: 0;
-  border-radius: 4px;
+  border-radius: 3vh;
 
   color: rgba(255, 255, 255, 0.9);
   background: rgba(23, 23, 23, 0.7);
