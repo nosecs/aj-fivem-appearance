@@ -664,14 +664,10 @@ RegisterNetEvent('qb-clothing:client:openWorkOutfits', function(datawork)  -- Na
             isMenuHeader = true,
         },
 		{
-            header = "Change Outfit",
-			txt = "Pick from any of your currently saved outfits",
+            header = "Civilian Outfit",
+			txt = "Put on your clothes",
             params = {
-                event = "fivem-appearance:pickNewOutfitApp",
-				args = {
-                    number = 1,
-                    id = 2
-                }
+                event = "fivem-appearance:reloadskin",
             }
         },
 		{
@@ -1174,11 +1170,17 @@ end)
 -- Command(s)
 
 RegisterCommand('reloadskin', function()
-	local playerPed = PlayerPedId()
+	TriggerEvent("fivem-appearance:reloadskin")
+end)
+
+RegisterNetEvent('fivem-appearance:reloadskin', function(data)
+    local playerPed = PlayerPedId()
 	local maxhealth = GetEntityMaxHealth(playerPed)
 	local health = GetEntityHealth(playerPed)
 	QBCore.Functions.TriggerCallback('fivem-appearance:getPlayerSkin', function(appearance)
 		exports['fivem-appearance']:setPlayerAppearance(appearance)
+        Wait(1000) -- Wait is needed to clothing menu dosent overwrite the tattoos
+			TriggerServerEvent('Select:Tattoos')
 	end)
 	for k, v in pairs(GetGamePool('CObject')) do
         if IsEntityAttachedToEntity(PlayerPedId(), v) then
@@ -1186,9 +1188,9 @@ RegisterCommand('reloadskin', function()
             DeleteObject(v)
             DeleteEntity(v)
         end
-	SetPedMaxHealth(PlayerId(), maxhealth)
-	Citizen.Wait(1000) -- Safety Delay
-	SetEntityHealth(PlayerPedId(), health)
+		SetPedMaxHealth(PlayerId(), maxhealth)
+		Citizen.Wait(1000) -- Safety Delay
+		SetEntityHealth(PlayerPedId(), health)
     end
 end)
 
