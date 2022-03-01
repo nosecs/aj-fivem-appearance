@@ -1148,20 +1148,20 @@ CreateThread(function()
 		if (isInClothingShop and not hasAlreadyEnteredMarker) or (isInClothingShop and LastZone ~= currentZone) then
 			hasAlreadyEnteredMarker, LastZone = true, currentZone
 			CurrentAction     = 'clothingMenu'
-			exports['qb-drawtext']:DrawText('[E] Clothing Menu','left')
+			exports['qb-core']:DrawText('[E] Clothing Menu','left')
 		end
 
 		if (isInBarberShop and not hasAlreadyEnteredMarker) or (isInBarberShop and LastZone ~= currentZone) then
 			hasAlreadyEnteredMarker, LastZone = true, currentZone
 			CurrentAction     = 'barberMenu'
-			exports['qb-drawtext']:DrawText('[E] Barber Menu','left')
+			exports['qb-core']:DrawText('[E] Barber Menu','left')
 		end
 
 		if not isInClothingShop and not isInBarberShop and hasAlreadyEnteredMarker then
 			hasAlreadyEnteredMarker = false
 			sleep = 1000
 			TriggerEvent('fivem-appearance:hasExitedMarker', LastZone)
-			exports['qb-drawtext']:HideText()
+			exports['qb-core']:HideText()
 		end
 		Wait(sleep)
 	end
