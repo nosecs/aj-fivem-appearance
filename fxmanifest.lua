@@ -9,6 +9,8 @@ version 'v1.3.0'
 shared_script 'config.lua'
 
 client_scripts {
+  '@PolyZone/client.lua',
+  '@PolyZone/BoxZone.lua',
   'game/build/client.js',
   'client/client.lua',
 }

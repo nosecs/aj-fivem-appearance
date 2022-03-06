@@ -1090,7 +1090,7 @@ end)
 
 CreateThread(function()
 	for k,v in ipairs(Config.BarberShops) do
-		local blip = AddBlipForCoord(v)
+		local blip = AddBlipForCoord(v.coords)
 
 		SetBlipSprite (blip, 71)
 		-- SetBlipColour (blip, 47)
@@ -1119,6 +1119,74 @@ CreateThread(function()
 end)
 
 CreateThread(function()
+    local playerCoords, isInClothingShop, isInPDPresets, isInBarberShop, currentZone, letSleep = GetEntityCoords(PlayerPedId()), false, false, nil, true
+    for k, v in pairs(Config.ClothingShops) do
+        v.BoxZone = BoxZone:Create(v.coords, 3.0, 5.0, {
+            name="Clothing-Shop"..k,
+            maxZ = v.coords.z+3,
+            minZ = v.coords.z,
+            offset={0.0, 0.0, 0.0},
+            scale={1.0, 1.0, 1.0},
+            debugPoly=false,
+        })
+    end
+
+    for k,v in pairs(Config.ClothingShops) do
+        v.BoxZone:onPlayerInOut(function (isPointInside, point)
+            if isPointInside == true then
+                isInClothingShop, currentZone = true, k
+                while (isInClothingShop and not hasAlreadyEnteredMarker) or (isInClothingShop and LastZone ~= currentZone) do
+                    hasAlreadyEnteredMarker, LastZone = true, currentZone
+			        CurrentAction     = 'clothingMenu'
+			        exports['qb-core']:DrawText('[E] Clothing Menu','left')
+                end
+            else
+                isInClothingShop = false
+                if not isInClothingShop and not isInBarberShop and hasAlreadyEnteredMarker then
+                    hasAlreadyEnteredMarker = false
+			        TriggerEvent('fivem-appearance:hasExitedMarker', LastZone)
+			        exports['qb-core']:HideText()
+                end
+            end
+        end)
+    end
+
+    for k, v in pairs(Config.BarberShops) do
+        v.BoxZone = BoxZone:Create(v.coords, 3.0, 5.0, {
+            name="Barber-Shop"..k,
+            maxZ = v.coords.z+3,
+            minZ = v.coords.z,
+            offset={0.0, 0.0, 0.0},
+            scale={1.0, 1.0, 1.0},
+            debugPoly=false,
+        })
+    end
+
+    for k,v in pairs(Config.BarberShops) do
+        v.BoxZone:onPlayerInOut(function (isPointInside, point)
+            if isPointInside == true then
+                isInBarberShop, currentZone = true, k
+                while (isInBarberShop and not hasAlreadyEnteredMarker) or (isInBarberShop and LastZone ~= currentZone) do
+                    hasAlreadyEnteredMarker, LastZone = true, currentZone
+			        CurrentAction     = 'barberMenu'
+			        exports['qb-core']:DrawText('[E] Barber Menu','left')
+                    Wait(0)
+                end
+            else
+                isInBarberShop = false
+                if not isInClothingShop and not isInBarberShop and hasAlreadyEnteredMarker then
+                    hasAlreadyEnteredMarker = false
+			        TriggerEvent('fivem-appearance:hasExitedMarker', LastZone)
+			        exports['qb-core']:HideText()
+                end
+            end
+        end)
+    end
+end)
+
+
+
+--[[CreateThread(function()
 	while true do
 		local playerCoords, isInClothingShop, isInPDPresets, isInBarberShop, currentZone, letSleep = GetEntityCoords(PlayerPedId()), false, false, nil, true
 		local sleep = 2000
@@ -1165,7 +1233,7 @@ CreateThread(function()
 		end
 		Wait(sleep)
 	end
-end)
+end)]]
 
 -- Command(s)
 
