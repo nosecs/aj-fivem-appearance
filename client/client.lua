@@ -893,9 +893,9 @@ RegisterNetEvent('qb-clothing:client:loadOutfit', function(oData)
     end
 end)
 
-RegisterNetEvent('qb-clothing:client:loadWorkOutfit', function(oData)
+RegisterNetEvent('qb-clothing:client:loadWorkOutfit', function(args)
     local ped = PlayerPedId()
-	local oData = oData.oData
+	local oData = args.oData
     data = oData.outfitData
 
     if typeof(data) ~= "table" then data = json.decode(data) end
@@ -908,6 +908,7 @@ RegisterNetEvent('qb-clothing:client:loadWorkOutfit', function(oData)
     -- Pants
     if data["pants"] ~= nil then
         SetPedComponentVariation(ped, 4, data["pants"].item, data["pants"].texture, 0)
+        print(data["pants"].item)
     end
 
     -- Arms
@@ -941,7 +942,7 @@ RegisterNetEvent('qb-clothing:client:loadWorkOutfit', function(oData)
     end
 
     -- Badge
-    if data["badge"] ~= nil then
+    if data["decals"] ~= nil then
         SetPedComponentVariation(ped, 10, data["decals"].item, data["decals"].texture, 0)
     end
 
@@ -996,7 +997,7 @@ RegisterNetEvent('qb-clothing:client:loadWorkOutfit', function(oData)
             ClearPedProp(ped, 2)
         end
     end
-	TriggerEvent("qb-clothes:pickWorkOutfitApp", oData.vData)
+	TriggerEvent("qb-clothes:pickWorkOutfitApp", args.vData)
 end)
 
 RegisterNetEvent('QBCore:Client:OnJobUpdate')

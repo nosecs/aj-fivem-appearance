@@ -6,9 +6,10 @@ description 'A flexible player customization script for FiveM. Made to work with
 repository 'https://github.com/ihyajb/aj-fivem-appearance'
 version 'v1.3.0'
 
-shared_script 'config.lua'
+shared_scripts {'config.lua'}
 
 client_scripts {
+  'outfits.lua',
   '@PolyZone/client.lua',
   '@PolyZone/BoxZone.lua',
   'game/build/client.js',
